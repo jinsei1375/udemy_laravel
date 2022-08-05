@@ -19,3 +19,14 @@ Route::get('tests/test', 'TestController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::group(['prefix' => 'contact', 'middleware' => 'auth'], function(){
+    Route::get('index', 'ContactFormController@index')->name('contact.index');
+    Route::get('show', 'ContactFormController@show');
+});
+
+
+// Route::resource('contacts', 'ContactFormController')->only([
+//     'index', 'show'
+// ]);
