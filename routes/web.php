@@ -23,7 +23,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'contact', 'middleware' => 'auth'], function(){
     Route::get('index', 'ContactFormController@index')->name('contact.index');
-    Route::get('show', 'ContactFormController@show');
+    Route::get('contact', 'ContactFormController@create')->name('contact.create');
+    Route::post('contact', 'ContactFormController@create')->name('contact.create');
+    Route::get('store', 'ContactFormController@store')->name('contact.store');
+
 });
 
 
