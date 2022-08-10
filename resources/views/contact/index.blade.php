@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Dashboard</div>
 
@@ -13,8 +13,30 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <a href="{{route('contact.create')}}">新規登録</a>
-                    インデックスです。
+                    <form method="GET" action="{{route('contact.create')}}">
+                        <button type="submit" class="btn btn-primary mb-30">新規登録</button>
+                    </form>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">id</th>
+                                <th scope="col">名前</th>
+                                <th scope="col">タイトル</th>
+                                <th scope="col">日付</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($contacts as $contact)
+                                <tr>
+                                    <th scope="row">{{$contact->id}}</th>
+                                    <td>{{$contact->your_name}}</td>
+                                    <td>{{$contact->title}}</td>
+                                    <td>{{$contact->created_at}}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                        
                 </div>
             </div>
         </div>
