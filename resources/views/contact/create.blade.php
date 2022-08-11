@@ -13,8 +13,20 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <form method="GET" action="{{route('contact.store')}}">
+                    <form method="POST" action="{{route('contact.store')}}">
                         @csrf
+
+                        @if ($errors->any())
+                            <div class="alert danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error )
+                                        <li>{{$error}}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+
+                        @endif
+
                         氏名
                         <input type="text" name="your_name">
                         <br>
@@ -40,7 +52,7 @@
                         <option value="4">40歳〜49歳</option>
                         <option value="5">50歳〜59歳</option>
                         <option value="6">60歳〜</option>
-                        </select> 
+                        </select>
                         <br>
                         お問い合わせ内容
                         <textarea name="contact"></textarea>
