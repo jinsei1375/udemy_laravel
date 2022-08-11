@@ -15,16 +15,35 @@ class ContactFormController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->input('search');
+
+        // dd($request);
+
+
         // エロクワント
         // $contacts = ContactForm::all();
 
         // クエリビルダ
-        $contacts = DB::table('contact_forms')
-        ->select('id', 'your_name', 'title', 'created_at')
-        ->orderBy('created_at', 'desc')
-        ->get();
+
+        // 検索フォーム
+        $query = DB::table('contact_forms');
+
+        if($search !== null) {
+            // 全角スペースを半角に
+            $search_split = mb_convert_kana($search, 's');
+
+            $search_split2 = preg_split('/[\s]+/', $search_split,-1,PREG_SPLIT_NO_EMPTY);
+
+            foreach($search_split2 as $value) {
+                $query->where('your_name', 'like', '%'.$value.'%');
+            }
+
+        }
+        $query->select('id', 'your_name', 'title', 'created_at');
+        $query->orderBy('created_at', 'desc');
+        $contacts = $query->paginate(20);
 
         return view('contact.index', compact('contacts'));
     }

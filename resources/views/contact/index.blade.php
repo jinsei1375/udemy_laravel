@@ -16,6 +16,10 @@
                     <form method="GET" action="{{route('contact.create')}}">
                         <button type="submit" class="btn btn-primary mb-3">新規登録</button>
                     </form>
+                    <form class="d-flex" method="GET" action="{{route('contact.index')}}">
+                        <input class="form-control me-2" name="search" type="search" placeholder="検索" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">検索する</button>
+                    </form>
                     <table class="table">
                         <thead>
                             <tr>
@@ -38,7 +42,7 @@
                             @endforeach
                         </tbody>
                     </table>
-
+                    {{$contacts->links()}}
                 </div>
             </div>
         </div>
