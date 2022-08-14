@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('tests/test', 'TestController@index');
+Route::get('shop/index', 'ShopController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
