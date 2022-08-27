@@ -44,7 +44,7 @@
                         <option value="6" @if($contact->age === 6) selected @endif>60歳〜</option>
                         </select>
                         <br>
-                        お問い合わせ内容
+                        お問い合わせ内容：
                         <textarea name="contact">{{$contact->contact}}</textarea>
                         <br>
                         <input type="submit" name="btn_confirm" value="更新する">
